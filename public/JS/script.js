@@ -1,5 +1,5 @@
 //variaveis
-const apiKey = "e8ad407005de218297bfb0894a9ca803"
+const apiKey = "XXXXXXXXXXXXXXXXXXXXXX"
 const apiCountryUrl = "https://flagsapi.com/"
 const apiUnsplash = "https://source.unsplash.com/1600x900/?"
 
