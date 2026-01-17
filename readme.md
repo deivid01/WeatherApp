@@ -226,7 +226,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 Seu Nome
 
-- GitHub: [@seu-usuario](https://github.com/deivid01)
+- GitHub: [@Deivid Peres](https://github.com/deivid01)
 
 ## 🙏 Agradecimentos
 
