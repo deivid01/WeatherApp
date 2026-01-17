@@ -34,7 +34,10 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ secrets.PAGES_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -47,6 +50,9 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
