@@ -114,6 +114,8 @@ git push origin main
 4. **Acesse sua aplicação**:
    - URL: `https://seu-usuario.github.io/WeatherApp/`
 
+> Deploy test: Workflow atualizado para habilitar Pages automaticamente.
+
 ### Método 2: Deploy Manual
 
 ```bash
