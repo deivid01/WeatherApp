@@ -112,9 +112,9 @@ git push origin main
    - O deploy acontecerá automaticamente a cada push na branch `main`
 
 4. **Acesse sua aplicação**:
-   - URL: `https://seu-usuario.github.io/WeatherApp/`
+   - URL: `https://deivid01.github.io/WeatherApp/`
 
-> Deploy test: Workflow atualizado para habilitar Pages automaticamente.
+> Publicação: Pages configurado via GitHub Actions; a URL acima será atualizada após o deploy concluir.
 
 ### Método 2: Deploy Manual
 
