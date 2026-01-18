@@ -31,7 +31,7 @@ export const WeatherCard = ({ data }: WeatherCardProps) => {
         </div>
         <div className="weather-icon-container">
           <img 
-            src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
+            src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
             alt={data.weather[0].description}
             className="weather-icon"
           />

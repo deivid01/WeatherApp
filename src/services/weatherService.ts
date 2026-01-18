@@ -19,26 +19,11 @@ export const getCityBackgroundImage = async (city: string): Promise<string> => {
             return cached;
         }
 
-        let imageUrl: string;
+        // Usar Source API do Unsplash (sem autenticação necessária)
+        // Formato correto: https://source.unsplash.com/1920x1080/?query
+        const query = encodeURIComponent(`${city} city landscape`);
+        const imageUrl = `https://source.unsplash.com/1920x1080/?${query}`;
 
-        // Tenta usar a API oficial do Unsplash se tiver access key
-        if (config.unsplashAccessKey && config.unsplashAccessKey !== 'YOUR_UNSPLASH_ACCESS_KEY') {
-            const response = await fetch(
-                `${config.unsplashApiUrl}?query=${encodeURIComponent(city + ' city landscape')}&orientation=landscape&per_page=1&client_id=${config.unsplashAccessKey}`
-            );
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.results && data.results.length > 0) {
-                    imageUrl = data.results[0].urls.regular;
-                    setCachedImage(city, imageUrl);
-                    return imageUrl;
-                }
-            }
-        }
-
-        // Fallback para Source API (sem autenticação necessária)
-        imageUrl = `${config.unsplashSourceUrl}?${encodeURIComponent(city)},city,landscape&fit=crop&q=80`;
         setCachedImage(city, imageUrl);
         return imageUrl;
     } catch (error) {
