@@ -19,11 +19,32 @@ export const getCityBackgroundImage = async (city: string): Promise<string> => {
             return cached;
         }
 
-        // Usar Source API do Unsplash (sem autenticação necessária)
-        // Formato correto: https://source.unsplash.com/1920x1080/?query
-        const query = encodeURIComponent(`${city} city landscape`);
-        const imageUrl = `https://source.unsplash.com/1920x1080/?${query}`;
+        let imageUrl: string;
 
+        // Tentar Pixabay API se a chave estiver configurada
+        if (config.pixabayApiKey && config.pixabayApiKey !== 'YOUR_PIXABAY_API_KEY') {
+            try {
+                const query = encodeURIComponent(`${city} city landscape`);
+                const response = await fetch(
+                    `${config.pixabayApiUrl}?key=${config.pixabayApiKey}&q=${query}&image_type=photo&orientation=horizontal&per_page=1&min_width=1920&safesearch=true`
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.hits && data.hits.length > 0) {
+                        imageUrl = data.hits[0].largeImageURL;
+                        setCachedImage(city, imageUrl);
+                        return imageUrl;
+                    }
+                }
+            } catch (pixabayError) {
+                console.warn('Pixabay API error, using fallback:', pixabayError);
+            }
+        }
+
+        // Fallback para Source API do Unsplash (sem autenticação necessária)
+        const query = encodeURIComponent(`${city} city landscape`);
+        imageUrl = `https://source.unsplash.com/1920x1080/?${query}`;
         setCachedImage(city, imageUrl);
         return imageUrl;
     } catch (error) {
